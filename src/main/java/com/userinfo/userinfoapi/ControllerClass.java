@@ -46,5 +46,33 @@ public class ControllerClass {
         }
     }
 
+    @RequestMapping(value = "/putUserInfo",method =RequestMethod.PUT)
+    @ResponseBody
+    @CrossOrigin
+    public Map<String,Boolean> putUserInfo(@RequestBody BodyEntity body){
+        String deviceid = body.getWhere().getDeviceid();
+        String city = body.getWhere().getCity();
+        String street = body.getWhere().getStreet();
+        String firstname = body.getWhere().getFirstname();
+        String lastname = body.getWhere().getLastname();
+        String phone = body.getWhere().getPhone();
+        EntityClass currentEntity = repository.findByDeviceid(deviceid);
+        System.out.println("check the value" + " "+ city);
+        if(currentEntity != null){
+            currentEntity.setCity(city);
+            currentEntity.setPhone(phone);
+            currentEntity.setFirstname(firstname);
+            currentEntity.setLastname(lastname);
+            currentEntity.setStreet(street);
+            currentEntity.setDeviceid(deviceid);
+            repository.save(currentEntity);
+        }else{
+            repository.save(body.getWhere());
+        }
+        HashMap <String,Boolean> map = new HashMap<>();
+        map.put("status",true);
+        return map;
+    }
+
     
 }
