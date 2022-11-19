@@ -6,43 +6,53 @@ import org.springframework.data.annotation.Id;
 public class EntityClass{
     
     @Id
-    private String deviceId;
+    private String id;
+    private String deviceid;
     private String firstname;
     private String lastname;
     private String city;
     private String phone;
+    private String street;
+
+    EntityClass(){};
 
     EntityClass(
-        String deviceId,
+        String deviceid,
         String firstname,
         String lastname,
         String city,
-        String phone
+        String phone,
+        String street
     ){
-        this.deviceId = deviceId;
+        this.deviceid = deviceid;
         this.firstname = firstname;
         this.lastname = lastname;
         this.city = city;
         this.phone = phone;
+        this.street = street;
     }
 
-    public String getId(){
-        return this.deviceId;
+    public String setDeviceid(String deviceid){
+        return this.deviceid = deviceid;
     }
 
-    public void setFirstName(String firstname){
+    public String getDeviceid(){
+        return this.deviceid;
+    }
+
+    public void setFirstname(String firstname){
         this.firstname = firstname;
     }
 
-    public String getFirstName (){
+    public String getFirstname (){
         return this.firstname;
     }
 
-    public void setLastName(String firstname){
-        this.firstname = firstname;
+    public void setLastname(String lastname){
+        this.lastname = lastname;
     }
 
-    public String getLastName(){
+    public String getLastname(){
         return this.lastname;
     }
 
@@ -60,6 +70,14 @@ public class EntityClass{
 
     public String getPhone(){
         return this.phone;
+    }
+
+    public void setStreet(String street){
+        this.street = street;
+    }
+
+    public String getStreet (){
+        return street;
     }
 
 

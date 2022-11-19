@@ -25,8 +25,8 @@ public class ControllerClass {
     @RequestMapping(value = "/postUserInfo",method =RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
-    public Map<String,Boolean> postUserInfo(@RequestBody EntityClass body){
-        repository.save(body);
+    public Map<String,Boolean> postUserInfo(@RequestBody BodyEntity body){
+        repository.save(body.getWhere());
         HashMap <String,Boolean> map = new HashMap<>();
         map.put("status",true);
         return map;
@@ -35,8 +35,15 @@ public class ControllerClass {
     @RequestMapping (value = "/getUserInfo", method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
-    public EntityClass getUserInfo(@RequestBody String deviceId){
-        return repository.findByDeviceId(deviceId);
+    public EntityClass getUserInfo(@RequestBody DeviceWhereEntity deviceid){
+        String deviceId = deviceid.getWhere().getDeviceid();
+        try{
+            return repository.findByDeviceid(deviceId);
+        }
+        catch(Exception e){
+            EntityClass newEntityClass = new EntityClass();
+            return newEntityClass;
+        }
     }
 
     
